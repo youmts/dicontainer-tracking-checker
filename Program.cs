@@ -18,6 +18,7 @@ namespace TrackingCheck
                 new AbiocChecker(),
                 new DryIocNoTrackChecker(),
                 new DryIocTrackChecker(),
+                new GraceChecker(),
             };
             var types = new Type[] {
                 typeof(Normal),
