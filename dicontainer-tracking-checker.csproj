@@ -12,6 +12,7 @@
     <PackageReference Include="DryIoc" Version="4.0.0" />
     <PackageReference Include="Grace" Version="6.4.2" />
     <PackageReference Include="lightinject" Version="5.4.0" />
+    <PackageReference Include="MicroResolver" Version="2.3.5" />
   </ItemGroup>
 
 </Project>
