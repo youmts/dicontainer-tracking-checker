@@ -11,7 +11,7 @@ namespace TrackingCheck.Checker
         protected override object CreateContainer(Type t)
         {
             var container = ObjectResolver.Create();
-            container.Register(Lifestyle.Scoped, t, t);
+            container.Register(Lifestyle.Transient, t, t);
             container.Compile();
             return container;
         }
