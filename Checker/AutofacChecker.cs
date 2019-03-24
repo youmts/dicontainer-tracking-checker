@@ -6,6 +6,8 @@ namespace TrackingCheck.Checker
 {
     public class AutofacChecker : CheckerBase
     {
+        protected override Type ContainerType => typeof(IContainer);
+
         protected override object CreateContainer(Type t)
         {
             var builder = new ContainerBuilder();

@@ -1,11 +1,19 @@
 using System;
+using System.Diagnostics;
+using System.Reflection;
 using TrackingCheck.Model;
 
 namespace TrackingCheck.Checker
 {
     public abstract class CheckerBase
     {
-        private bool _finalized;
+        public string GetAssemblyString()
+        {
+            var assembly = Assembly.GetAssembly(ContainerType);
+            var name = assembly.GetName();
+//            var info = FileVersionInfo.GetVersionInfo(assembly.Location);
+            return name.ToString();
+        }
         
         public bool Run(Type t)
         {
@@ -19,6 +27,8 @@ namespace TrackingCheck.Checker
             return _finalized;
         }
 
+        protected abstract Type ContainerType {get;}
+        private bool _finalized;
         private void InnerRun(object container, Type t)
         {
             var obj = Resolve(container, t);

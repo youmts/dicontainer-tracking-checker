@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Autofac;
 using TrackingCheck.Model;
 using TrackingCheck.Checker;
 
@@ -24,7 +23,8 @@ namespace TrackingCheck
 
             foreach (var checker in checkers)
             {
-                Console.WriteLine($"{checker.GetType().Name}");
+                Console.WriteLine();
+                Console.WriteLine($"{checker.GetAssemblyString()}");
 
                 foreach (var type in types)
                 {

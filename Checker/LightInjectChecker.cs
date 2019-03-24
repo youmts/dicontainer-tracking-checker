@@ -6,6 +6,8 @@ namespace TrackingCheck.Checker
 {
     public class LightInjectChecker : CheckerBase
     {
+        protected override Type ContainerType => typeof(IServiceContainer);
+
         protected override object CreateContainer(Type t)
         {
             var container = new ServiceContainer();
