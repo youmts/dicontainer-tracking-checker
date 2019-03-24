@@ -7,14 +7,20 @@ namespace TrackingCheck.Checker
 {
     public abstract class CheckerBase
     {
+        public string GetAssemblyVersionString()
+        {
+            var assembly = Assembly.GetAssembly(ContainerType);
+            var name = assembly.GetName();
+            return name.ToString();
+        }
+
         public string GetAssemblyString()
         {
             var assembly = Assembly.GetAssembly(ContainerType);
             var name = assembly.GetName();
-//            var info = FileVersionInfo.GetVersionInfo(assembly.Location);
-            return name.ToString();
+            return name.ToString().Split(",")[0];
         }
-        
+
         public bool Run(Type t)
         {
             var container = CreateContainer(t);
