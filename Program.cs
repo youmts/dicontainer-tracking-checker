@@ -76,7 +76,7 @@ namespace TrackingCheck
                     colHeaders.Select((x, j) => 
                         string.Format(
                             "{0, " + colHeaders[j].Length + "}", 
-                            results[i][j] ? "T" : "F")
+                            results[i][j] ? "NoTr" : "Tr")
                     )
                 ));
 
