@@ -20,6 +20,7 @@ namespace TrackingCheck
                 new DryIocTrackChecker(),
                 new GraceChecker(),
                 new MicroResolverChecker(),
+                new UnityChecker(),
             };
             var types = new Type[] {
                 typeof(Normal),
