@@ -16,6 +16,8 @@ namespace TrackingCheck
                 new AutofacChecker(),
                 new LightInjectChecker(),
                 new AbiocChecker(),
+                new DryIocNoTrackChecker(),
+                new DryIocTrackChecker(),
             };
             var types = new Type[] {
                 typeof(Normal),
@@ -47,7 +49,7 @@ namespace TrackingCheck
 
             Console.WriteLine();
 
-            var rowHeaders = checkers.Select(x => x.GetAssemblyString()).ToArray();
+            var rowHeaders = checkers.Select(x => x.ContainerName).ToArray();
             var colHeaders = types.Select(x => x.Name).ToArray();
             var rowHeaderMaxLength = rowHeaders.Max(x => x.Length);
             var rowHeaderFormat = "|{0, -" + rowHeaderMaxLength + "}|";

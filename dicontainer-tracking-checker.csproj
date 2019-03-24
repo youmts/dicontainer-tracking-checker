@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="abioc" Version="0.7.0" />
     <PackageReference Include="Autofac" Version="4.9.1" />
+    <PackageReference Include="DryIoc" Version="4.0.0" />
     <PackageReference Include="lightinject" Version="5.4.0" />
   </ItemGroup>
 

@@ -14,11 +14,14 @@ namespace TrackingCheck.Checker
             return name.ToString();
         }
 
-        public string GetAssemblyString()
+        public virtual string ContainerName
         {
-            var assembly = Assembly.GetAssembly(ContainerType);
-            var name = assembly.GetName();
-            return name.ToString().Split(",")[0];
+            get
+            {
+                var assembly = Assembly.GetAssembly(ContainerType);
+                var name = assembly.GetName();
+                return name.ToString().Split(",")[0];
+            }
         }
 
         public bool Run(Type t)
