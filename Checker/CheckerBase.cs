@@ -7,10 +7,10 @@ namespace TrackingCheck.Checker
     {
         private bool _finalized;
         
-        public bool Run<T>() where T : FinalizeCallbackable
+        public bool Run(Type t)
         {
-            var container = CreateContainer<T>();
-            InnerRun<T>(container);
+            var container = CreateContainer(t);
+            InnerRun(container, t);
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -19,16 +19,14 @@ namespace TrackingCheck.Checker
             return _finalized;
         }
 
-        private void InnerRun<T>(object container) where T : FinalizeCallbackable
+        private void InnerRun(object container, Type t)
         {
-            var obj = Resolve<T>(container);
+            var obj = Resolve(container, t);
             _finalized = false;
             obj.FinalizeCallback = () => { _finalized = true; };
         }
 
-        protected abstract object CreateContainer<T>() 
-            where T : FinalizeCallbackable;
-        protected abstract FinalizeCallbackable Resolve<T>(object container)
-            where T : FinalizeCallbackable;
+        protected abstract object CreateContainer(Type t);
+        protected abstract FinalizeCallbackable Resolve(object container, Type t);
     }
 }

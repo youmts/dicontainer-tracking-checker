@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.1" />
+    <PackageReference Include="lightinject" Version="5.4.0" />
   </ItemGroup>
 
 </Project>

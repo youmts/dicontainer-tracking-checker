@@ -13,14 +13,26 @@ namespace TrackingCheck
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"{nameof(AutofacChecker)}");
-            var checker = new AutofacChecker();
-            Console.WriteLine(
-                $"{nameof(NormalModel)} " +
-                $"finalized:{checker.Run<NormalModel>()}");
-            Console.WriteLine(
-                $"{nameof(DisposableModel)} " +
-                $"finalized:{checker.Run<DisposableModel>()}");
+            var checkers = new CheckerBase[] {
+                new AutofacChecker(),
+                new LightInjectChecker(),
+            };
+            var types = new Type[] {
+                typeof(NormalModel),
+                typeof(DisposableModel),
+            };
+
+            foreach (var checker in checkers)
+            {
+                Console.WriteLine($"{checker.GetType().Name}");
+
+                foreach (var type in types)
+                {
+                    Console.WriteLine(
+                        $"{type.Name} " +
+                        $"finalized:{checker.Run(type)}");
+                }
+            }
         }
     }
 }
