@@ -15,6 +15,7 @@ namespace TrackingCheck
             var checkers = new CheckerBase[] {
                 new AutofacChecker(),
                 new LightInjectChecker(),
+                new AbiocChecker(),
             };
             var types = new Type[] {
                 typeof(Normal),
