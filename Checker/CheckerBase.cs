@@ -18,22 +18,24 @@ namespace TrackingCheck.Checker
         public bool Run(Type t)
         {
             var container = CreateContainer(t);
-            InnerRun(container, t);
+            var finalized = false;
+            InnerRun(container, t, () => {finalized = true;});
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
             GC.Collect();
 
-            return _finalized;
+            return finalized;
         }
 
         protected abstract Type ContainerType {get;}
-        private bool _finalized;
-        private void InnerRun(object container, Type t)
+        private void InnerRun(object container, Type t, Action callback)
         {
+            // Resolve in this scope.
             var obj = Resolve(container, t);
-            _finalized = false;
-            obj.FinalizeCallback = () => { _finalized = true; };
+            obj.FinalizeCallback = callback;
+
+            // Scope out, then no reference to obj.
         }
 
         protected abstract object CreateContainer(Type t);
